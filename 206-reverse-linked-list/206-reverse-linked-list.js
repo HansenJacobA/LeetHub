@@ -20,14 +20,12 @@
     //advance prev and curr
 //return prev
 
-
-
 var reverseList = function(head) {
     let curr = head
     let prev = null
     let next = null
  
-    while(curr !== null){
+    while (curr !== null){
         next = curr.next;
         curr.next = prev;
         prev = curr;
