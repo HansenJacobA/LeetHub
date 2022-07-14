@@ -17,12 +17,17 @@ var reverseList = function(head) {
     // Reassign each node in reversed order
     // Return the reversed LL
     
-    {ListNode} curr = head, prev = null, next = null;
-    while(curr){
-        next = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = next;
+    const nodes = [];
+    let node = head;
+    while (node !== null) {
+        nodes.unshift(node);
+        node = node.next;
     }
-    return prev;
+    for (let i = 0; i < nodes.length - 1; i += 1) {
+        nodes[i].next = nodes[i + 1];
+        if (i === nodes.length - 2) {
+            nodes[i + 1].next = null;
+        }
+    }
+    return nodes[0] || head;
 };
