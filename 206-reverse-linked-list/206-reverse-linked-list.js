@@ -9,25 +9,29 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+
+//set the current to head
+//set the prev to null
+//set the next to null
+
+//while current is not null
+    //save next
+    //reverse
+    //advance prev and curr
+//return prev
+
+
+
 var reverseList = function(head) {
-    // Input - Linked List
-    // Output - Reversed LL
-    
-    // Push all nodes into an array,
-    // Reassign each node in reversed order
-    // Return the reversed LL
-    
-    const nodes = [];
-    let node = head;
-    while (node !== null) {
-        nodes.unshift(node);
-        node = node.next;
+    let curr = head
+    let prev = null
+    let next = null
+ 
+    while(curr !== null){
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
     }
-    for (let i = 0; i < nodes.length - 1; i += 1) {
-        nodes[i].next = nodes[i + 1];
-        if (i === nodes.length - 2) {
-            nodes[i + 1].next = null;
-        }
-    }
-    return nodes[0] || head;
+    return prev
 };
