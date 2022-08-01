@@ -13,10 +13,9 @@ var topKFrequent = function(nums, k) {
         counts[nums[i]] += 1;
     }
     const inOrder = Object.entries(counts).sort((a, b) => a[1] - b[1]);
-    const topKdata = inOrder.slice(inOrder.length - k);
     const topK = [];
-    for (let i = 0; i < topKdata.length; i += 1) {
-        topK.push(topKdata[i][0]);
+    for (let i = inOrder.length - k; i < inOrder.length; i += 1) {
+        topK.push(inOrder[i][0]);
     }
     
     return topK;
