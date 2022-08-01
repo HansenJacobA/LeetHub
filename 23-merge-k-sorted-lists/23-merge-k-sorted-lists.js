@@ -23,7 +23,7 @@ var mergeKLists = function(lists) {
     for (const val of allVals) {
         const node = new ListNode(val);
         runner.next = node;
-        runner = runner.next;
+        runner = node;
     }
     return head.next;
 };
