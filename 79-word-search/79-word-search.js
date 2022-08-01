@@ -4,69 +4,50 @@
  * @return {boolean}
  */
 var exist = function(board, word) {
-    let foundFlag = false;
-    
-    for(let column = 0; column < board.length; column++) {
-        for(let row = 0; row < board[0].length; row++) {
-            if(checkFromPosition(board, column, row, word) === true) {
-                foundFlag = true;
-                break;
+    const lengthToMatch = word.length;
+    for (let i = 0; i < board.length; i += 1) {
+        for (let j = 0; j < board[i].length; j += 1) {
+            let wordFound = false;
+            if (board[i][j] === word[0]) {
+                // ---------------------------------
+                
+function startLooking(wordIdx, word, board, row, col) {
+    const temp = board[row][col];
+    board[row][col] = '*';
+    if (wordIdx === lengthToMatch) {
+        wordFound = true;
+    }
+    const nextLetter = word[wordIdx];
+    wordIdx += 1;
+    if (validRowCol(row + 1, col, board) && board[row + 1][col]  === nextLetter && !wordFound) {
+        startLooking(wordIdx, word, board, row + 1, col);
+    }
+    if (validRowCol(row - 1, col, board) && board[row - 1][col]  === nextLetter && !wordFound) {
+        startLooking(wordIdx, word, board, row - 1, col);
+    }
+    if (validRowCol(row, col + 1, board) && board[row][col + 1]  === nextLetter && !wordFound) {
+        startLooking(wordIdx, word, board, row, col + 1);
+    }
+    if (validRowCol(row, col - 1, board) && board[row][col - 1]  === nextLetter && !wordFound) {
+        startLooking(wordIdx, word, board, row, col - 1);
+    }
+    board[row][col] = temp;
+    return;
+}
+                
+                // ---------------------------------
+                startLooking(1, word, board, i, j);
             }
-        }
-        
-        if(foundFlag === true) {
-            break;
+            if (wordFound) return true;
         }
     }
-    
-    return foundFlag;
+    return false;
 };
 
-function checkFromPosition(board, column, row, word) {
-    let wordIndexMax = word.length -1;
-    let foundFlag = false;
-    let columnIndexMax = board.length-1;
-    let rowIndexMax = board[0].length-1;
-    
-    let innerFunc = function(currentColumn, currentRow, wordIndex, markedMap) {
-        let targetLetter = word[wordIndex];
-        
-        if(foundFlag === true) return;
-        
-        if(board[currentColumn][currentRow] !== targetLetter) {
-            return;
-        }
-        
-        markedMap[`${currentColumn}:${currentRow}`] = true;
-        
-        if(board[currentColumn][currentRow] === targetLetter && wordIndex === wordIndexMax) {
-            foundFlag = true;
-            return;
-        }
-        
-        //check up
-        if(markedMap[`${currentColumn-1}:${currentRow}`] === undefined && currentColumn !== 0) {
-            innerFunc(currentColumn-1, currentRow, wordIndex+1, {...markedMap});
-        }
-        
-        //check down
-        if(markedMap[`${currentColumn+1}:${currentRow}`] === undefined && currentColumn !== columnIndexMax) {
-            innerFunc(currentColumn+1, currentRow, wordIndex+1, {...markedMap});
-        }
-        
-        //check right
-        if(markedMap[`${currentColumn}:${currentRow+1}`] === undefined && currentRow !== rowIndexMax) {
-            innerFunc(currentColumn, currentRow+1, wordIndex+1, {...markedMap});
-        }
-        
-        //check left
-        if(markedMap[`${currentColumn}:${currentRow-1}`] === undefined && currentRow !== 0) {
-            innerFunc(currentColumn, currentRow-1, wordIndex+1, {...markedMap});
-        }
+function validRowCol(row, col, board) {
+    if (row < 0 || row >= board.length ||
+        col < 0 || col >= board[row].length) {
+        return false;
     }
-    
-    innerFunc(column, row, 0, {});
-    
-    
-    return foundFlag;
-};
+    return true;
+}
