@@ -11,7 +11,7 @@ var exist = function(board, word) {
             if (board[i][j] === word[0]) {
                 // ---------------------------------
                 
-function startLooking(wordIdx, word, board, row, col) {
+function startLooking(wordIdx, row, col) {
     const temp = board[row][col];
     board[row][col] = '*';
     if (wordIdx === lengthToMatch) {
@@ -20,23 +20,23 @@ function startLooking(wordIdx, word, board, row, col) {
     const nextLetter = word[wordIdx];
     wordIdx += 1;
     if (validRowCol(row + 1, col, board) && board[row + 1][col]  === nextLetter && !wordFound) {
-        startLooking(wordIdx, word, board, row + 1, col);
+        startLooking(wordIdx, row + 1, col);
     }
     if (validRowCol(row - 1, col, board) && board[row - 1][col]  === nextLetter && !wordFound) {
-        startLooking(wordIdx, word, board, row - 1, col);
+        startLooking(wordIdx, row - 1, col);
     }
     if (validRowCol(row, col + 1, board) && board[row][col + 1]  === nextLetter && !wordFound) {
-        startLooking(wordIdx, word, board, row, col + 1);
+        startLooking(wordIdx, row, col + 1);
     }
     if (validRowCol(row, col - 1, board) && board[row][col - 1]  === nextLetter && !wordFound) {
-        startLooking(wordIdx, word, board, row, col - 1);
+        startLooking(wordIdx, row, col - 1);
     }
     board[row][col] = temp;
     return;
 }
                 
                 // ---------------------------------
-                startLooking(1, word, board, i, j);
+                startLooking(1, i, j);
             }
             if (wordFound) return true;
         }
