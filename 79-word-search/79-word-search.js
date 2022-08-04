@@ -12,11 +12,11 @@ var exist = function(board, word) {
                 // ---------------------------------
                 
 function startLooking(wordIdx, row, col) {
-    const temp = board[row][col];
-    board[row][col] = '*';
     if (wordIdx === lengthToMatch) {
         wordFound = true;
     }
+    const temp = board[row][col];
+    board[row][col] = '*';
     const nextLetter = word[wordIdx];
     wordIdx += 1;
     if (validRowCol(row + 1, col, board) && board[row + 1][col]  === nextLetter && !wordFound) {
