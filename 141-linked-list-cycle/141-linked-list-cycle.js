@@ -13,11 +13,8 @@
 var hasCycle = function(head) {
     let node = head;
     while (head && node) {
-        if (node.next) {
-            node = node.next.next;
-        } else {
-            return false;
-        }
+        if (!node.next) return false;
+        node = node.next.next;
         if (node === head) return true;
         head = head.next;
     }
