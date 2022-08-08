@@ -13,7 +13,7 @@
 var hasCycle = function(head) {
     let node = head;
     while (head && node) {
-        if (!node.next) return false;
+        if (node.next === null) return false;
         node = node.next.next;
         if (node === head) return true;
         head = head.next;
