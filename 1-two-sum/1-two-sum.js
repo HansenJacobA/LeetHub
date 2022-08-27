@@ -6,10 +6,11 @@
 var twoSum = function(nums, target) {
     const cache = {};
     for (let i = 0; i < nums.length; i += 1) {
-        if (cache[(target - nums[i])] === undefined) {
+        let val = cache[(target - nums[i])];
+        if (val === undefined) {
             cache[nums[i]] = i;
         } else {
-            return [cache[(target - nums[i])], i];
+            return [val, i];
         }
     }
     return [];
