@@ -4,9 +4,12 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    for (let i = 0; i < nums.length - 1; i += 1) {
-        for (let j = i + 1; j < nums.length; j += 1) {
-            if (nums[i] + nums[j] === target) return [i, j];
+    const cache = {};
+    for (let i = 0; i < nums.length; i += 1) {
+        if (cache[(target - nums[i])] === undefined) {
+            cache[nums[i]] = i;
+        } else {
+            return [cache[(target - nums[i])], i];
         }
     }
     return [];
