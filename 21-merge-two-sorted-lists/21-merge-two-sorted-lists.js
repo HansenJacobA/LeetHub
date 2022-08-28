@@ -12,7 +12,7 @@
  */
 var mergeTwoLists = function(list1, list2) {
     const vals = [];
-    while (list1) {
+    while (list1 && list2) {
         vals.push(list1.val);
         list1 = list1.next;
     }
