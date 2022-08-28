@@ -11,9 +11,7 @@ var isValid = function(s) {
     const stack = [s[0]];
     for (let i = 1; i < s.length; i += 1) {
         if (key[s[i]] && stack.pop() !== key[s[i]]) return false;
-        if (!key[s[i]]) {
-            stack.push(s[i]);
-        }
+        if (!key[s[i]]) stack.push(s[i]);
     }
-    return stack.length ? false : true;
+    return !stack.length;
 };
