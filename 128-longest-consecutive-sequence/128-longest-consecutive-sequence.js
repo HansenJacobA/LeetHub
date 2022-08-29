@@ -1,23 +1,26 @@
-/**
- * @param {number[]} nums
- * @return {number}
- */
 var longestConsecutive = function(nums) {
-    const cache = {};
-    for (const num of nums) {
-        cache[num] = num;
+    let longestRun = 0;
+    let startOfLongestRun = Infinity;
+    let endOfLongestRun = -Infinity;
+    const uniqueNums = {};
+    for (let i = 0; i < nums.length; i += 1) {
+        uniqueNums[nums[i]] = nums[i];
     }
-    let longestStreak = 0;
-    for (const key in cache) {
-        let currentNum = cache[key];
-        if (cache[currentNum - 1] === undefined) {
-            let currentStreak = 1;
-            while (cache[currentNum + 1] !== undefined) {
-                currentNum += 1;
-                currentStreak += 1;
-            }
-            longestStreak = Math.max(longestStreak, currentStreak);
+    for (const num in uniqueNums) {
+        let currentNum = uniqueNums[num];
+        if (currentNum >= startOfLongestRun 
+           && currentNum <= endOfLongestRun) continue;
+        let currentRun = 1;
+        let right = currentNum + 1;
+        while (uniqueNums[right] !== undefined) {
+            currentRun += 1;
+            right += 1;
+        }
+        if (currentRun > longestRun) {
+            longestRun = currentRun;
+            startOfLongestRun = currentNum;
+            endOfLongestRun = right - 1;
         }
     }
-    return longestStreak;
+    return longestRun;
 };
