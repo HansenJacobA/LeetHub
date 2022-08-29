@@ -13,9 +13,9 @@
 var hasCycle = function(head) {
     let node = head;
     while (node && head) {
-        if (node.next === null) return false;
+        if (node.next == null) return false;
         node = node.next.next;
-        if (node === head) return true;
+        if (node == head) return true;
         head = head.next
     }
     return false;
