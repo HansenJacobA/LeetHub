@@ -12,11 +12,11 @@
  */
 var hasCycle = function(head) {
     let node = head;
-    while (head && node) {
+    while (node && head) {
         if (node.next === null) return false;
         node = node.next.next;
         if (node === head) return true;
-        head = head.next;
+        head = head.next
     }
     return false;
 };
