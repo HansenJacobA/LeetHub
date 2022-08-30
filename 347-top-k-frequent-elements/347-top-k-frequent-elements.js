@@ -4,19 +4,36 @@
  * @return {number[]}
  */
 var topKFrequent = function(nums, k) {
-    const counts = {};
-    for (let i = 0; i < nums.length; i += 1) {
-        if (counts[nums[i]] === undefined) {
-            counts[nums[i]] = 1;
-            continue;
-        }
-        counts[nums[i]] += 1;
-    }
-    const inOrder = Object.entries(counts).sort((a, b) => a[1] - b[1]);
-    const topK = [];
-    for (let i = inOrder.length - k; i < inOrder.length; i += 1) {
-        topK.push(inOrder[i][0]);
-    }
+    // input - array nums and limit num
+    // output - array of top k nums in nums
     
-    return topK;
+    // create storage array of arrays
+        // used to store counts at array indices
+    // create map of values to counts
+        // used to fill storage array
+    // iterate through nums and fill map
+    // iterate through map and fill storage
+    // iterate through storage to get top k elements
+    // return top k elements
+    
+    const order = new Array(nums.length + 1).fill([]);
+    const counts = {};
+    for (const num of nums) {
+        counts[num] = counts[num] == undefined ? 1 : counts[num] += 1;
+    }
+    for (const key in counts) {
+        const idx = counts[key];
+        order[idx] = [...order[idx], key];
+    }
+    const result = [];
+    for (let i = order.length - 1; i > 0; i -= 1) {
+        if (order[i].length) {
+            let idx = 0;
+            while (idx < order[i].length && result.length < k) {
+                result.push(order[i][idx]);
+                idx += 1;
+            }
+        }
+    }
+    return result;
 };
