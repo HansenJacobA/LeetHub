@@ -11,7 +11,7 @@ var maxArea = function(height) {
         const h = Math.min(height[left], height[right]);
         console.log(h)
         maxVolume = Math.max(maxVolume, (w * h));
-        if (height[left] >= height[right]) {
+        if (height[left] > height[right]) {
             right -= 1;
         } else {
             left += 1;
