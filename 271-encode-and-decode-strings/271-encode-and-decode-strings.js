@@ -5,7 +5,9 @@
  * @return {string}
  */
 var encode = function(strs) {
-    return strs;
+    let str = '';
+    strs.forEach(s => { str += s.length + '#' + s; });
+    return str;
 };
 
 /**
@@ -15,7 +17,19 @@ var encode = function(strs) {
  * @return {string[]}
  */
 var decode = function(s) {
-    return s;
+    const arr = [];
+    for (let i = 0; i < s.length; i += 1) {
+        let findPoundIdx = i;
+        while (s[findPoundIdx] !== '#' && findPoundIdx < s.length) {
+            findPoundIdx += 1;
+        }
+        let numStr = s.substring(i, findPoundIdx);
+        let num = parseInt(numStr);
+        let str = s.substring(findPoundIdx + 1, findPoundIdx + num + 1);
+        arr.push(str);
+        i = findPoundIdx + num;
+    }
+    return arr;
 };
 
 /**
