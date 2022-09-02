@@ -12,11 +12,11 @@
  */
 var maxDepth = function(root) {
     let depth = 0;
-    const queue = [[root, 1]];
-    while (queue.length) {
-        const [node, d] = queue.shift();
+    const stack = [[root, 1]];
+    while (stack.length) {
+        const [node, d] = stack.pop();
         if (node !== null) {
-            queue.push([node.left, d + 1], [node.right, d + 1]);
+            stack.push([node.left, d + 1], [node.right, d + 1]);
             depth = Math.max(depth, d);
         }
     }
