@@ -3,35 +3,17 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    // Create return array
-    // Create left values array (LVA)
-    // Create right values array (RVA)
-    // Create current product variable
-    // Iterate right and fill LVA
-    // Iterate left and fill RVA
-    // Iterate LVA and RVA and fill return array
-    
-    const result = [];
-    const leftValues = [];
-    const rightValues = [];
-    let product = 1;
-    for (let i = 0; i < nums.length; i += 1) {
-        leftValues.push(product);
-        product *= nums[i];
-        rightValues.push(1);
+    const lefts = new Array(nums.length).fill(1);
+    const rights = new Array(nums.length).fill(1);
+    const sums = new Array(nums.length).fill(1);
+    for (let i = 1; i < nums.length; i += 1) {
+        lefts[i] = lefts[i - 1] * nums[i - 1];
     }
-    product = 1;
-    for (let i = nums.length - 1; i >= 0; i -= 1) {
-        rightValues[i] = product;
-        product *= nums[i];
+    for (let i = nums.length - 2; i >= 0; i -= 1) {
+        rights[i] = rights[i + 1] * nums[i + 1];
     }
     for (let i = 0; i < nums.length; i += 1) {
-        result.push((leftValues[i] * rightValues[i]));
+        sums[i] = lefts[i] * rights[i];
     }
-    return result;
+    return sums;
 };
-
-// Input: array of numbers
-// Output: array of products
-// Constraints: O(n) time and no use of division
-// Edgecases: Products must be of all elements except the current element
