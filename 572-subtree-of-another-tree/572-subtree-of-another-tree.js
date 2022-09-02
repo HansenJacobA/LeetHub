@@ -13,4 +13,15 @@
  */
 var isSubtree = function(root, subRoot) {
     return JSON.stringify(root).includes(JSON.stringify(subRoot));
+};var isSubtree = function(root, subRoot) {
+    if (subRoot == null) return true;
+    if (root == null) return false;
+    if (helper(root, subRoot)) return true;
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
+
+function helper (p, q) {
+    if (!p && !q) return true;
+    if (!p || !q || p.val !== q.val) return false;
+    return helper(p.left, q.left) && helper(p.right, q.right);
+}
