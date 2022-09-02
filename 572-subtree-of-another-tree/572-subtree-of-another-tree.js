@@ -13,8 +13,8 @@
  */
 var isSubtree = function(root, subRoot) {
     if (subRoot == null) return true;
-    if (helper(root, subRoot)) return true;
     if (root == null) return false;
+    if (helper(root, subRoot)) return true;
     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 };
 
