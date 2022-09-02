@@ -11,14 +11,6 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    let depth = 0;
-    const stack = [[root, 1]];
-    while (stack.length) {
-        const [node, d] = stack.pop();
-        if (node !== null) {
-            stack.push([node.left, d + 1], [node.right, d + 1]);
-            depth = Math.max(depth, d);
-        }
-    }
-    return depth;
+    if (root == null) return 0;
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
 };
