@@ -5,11 +5,9 @@
 var isPalindrome = function(s) {
     const cleanStr = [];
     for (let i = 0; i < s.length; i += 1) {
-        const original = s.charCodeAt(i);
         const lowered = s[i].toLowerCase().charCodeAt();
-        if (original > 47 && original < 58) {
-            cleanStr.push(original);
-        } else if (lowered < 123 && lowered > 96) {
+        if (lowered > 47 && lowered < 58 ||
+           lowered < 123 && lowered > 96) {
             cleanStr.push(lowered);
         }
     }
