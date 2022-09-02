@@ -3,13 +3,15 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    let val = s.toLowerCase();
-    let strippedWord =[];
-    for (let i = 0; i < val.length; i += 1) {
-        let num = val.charCodeAt(i);
-        if (num > 96 && num < 123 || num < 58 && num > 47) {
-            strippedWord.push(val[i]);
+    const cleanStr = [];
+    for (let i = 0; i < s.length; i += 1) {
+        const original = s.charCodeAt(i);
+        const lowered = s[i].toLowerCase().charCodeAt();
+        if (original > 47 && original < 58) {
+            cleanStr.push(original);
+        } else if (lowered < 123 && lowered > 96) {
+            cleanStr.push(lowered);
         }
     }
-    return [...strippedWord].reverse().join('') === strippedWord.join('');
+    return cleanStr.join('') == cleanStr.reverse().join('');
 };
