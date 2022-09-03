@@ -3,9 +3,9 @@
  * @return {number}
  */
 var maxProfit = function(p) {
-    var m = 0;
-    var l = p[0];
-    for (var n of p) {
+    let m = 0;
+    let l = p[0];
+    for (let n of p) {
         l = l < n ? l : n;
         m = m > n - l ? m : n - l;
     }
