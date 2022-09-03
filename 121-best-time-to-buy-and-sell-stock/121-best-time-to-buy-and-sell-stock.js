@@ -13,15 +13,22 @@
 // };
 
 var maxProfit = function(prices) {
-    let maxProfitValue = 0,left=0,right=1;
-    while(right < prices.length){
-        let difference = prices[right] - prices[left]
-        if(prices[left] > prices[right]){
-            left = right
-        }else if(prices[left] < prices[right]){
-            maxProfitValue = Math.max(difference,maxProfitValue)
+    
+    // Iteratively go through each price. If we
+    // find a lower price than the current lower replace it.
+    // else calculate the profit for the current price with the lower price
+    // yet found and substitute teh maxProfit if it's higher.
+    
+    let lowestPrice = 0;
+    let maxProfit = 0;
+    
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] < prices[lowestPrice]) {
+            lowestPrice = i;
+        } else {
+            maxProfit = Math.max(maxProfit, prices[i] - prices[lowestPrice]);
         }
-        right++
     }
-    return maxProfitValue
+    
+    return maxProfit
 };
