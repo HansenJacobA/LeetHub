@@ -3,20 +3,17 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let m = 0;
-    let g = prices.length;
-    const l = new Array(g);
-    const r = new Array(g);
-    for (let i = 0; i < g; i += 1) {
-        let v = prices[i];
-        l[i] = l[i - 1] < v ? l[i - 1] : v;
+    let max = 0;
+    const left = new Array(prices.length);
+    const right = new Array(prices.length);
+    for (let i = 0; i < prices.length; i += 1) {
+        left[i] = Math.min(left[i - 1], prices[i]) || prices[i];
     }
-    for (let i = g - 1; i >= 0; i -= 1) {
-        let v = prices[i];
-        r[i] = r[i + 1] > v ? r[i + 1] : v;
+    for (let i = prices.length - 1; i >= 0; i -= 1) {
+        right[i] = Math.max(right[i + 1], prices[i]) || prices[i];
     }
-    for (let i = 0; i < g; i += 1) {
-        m = m > r[i] - l[i] ? m : r[i] - l[i];
+    for (let i = 0; i < prices.length; i += 1) {
+        max = Math.max(max, right[i] - left[i]);
     }
-    return m;
+    return max;
 };
