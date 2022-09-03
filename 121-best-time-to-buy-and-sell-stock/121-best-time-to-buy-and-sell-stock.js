@@ -4,8 +4,8 @@
  */
 var maxProfit = function(prices) {
     let max = 0;
-    const left = new Array(prices.length);
-    const right = new Array(prices.length);
+    const left = [];
+    const right = [];
     for (let i = 0; i < prices.length; i += 1) {
         left[i] = Math.min(left[i - 1], prices[i]) || prices[i];
     }
