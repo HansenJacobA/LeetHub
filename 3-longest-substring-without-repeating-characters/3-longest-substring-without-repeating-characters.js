@@ -12,7 +12,7 @@ var lengthOfLongestSubstring = function(s) {
             l += 1;
         }
         set.add(s[r]);
-        max = max > r - l + 1 ? max : r - l + 1;
+        max = Math.max(max, r - l + 1);
     }
     return max;
 };
