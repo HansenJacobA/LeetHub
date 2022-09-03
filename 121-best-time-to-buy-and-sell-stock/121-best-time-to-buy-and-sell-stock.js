@@ -5,8 +5,8 @@
 var maxProfit = function(prices) {
     let m = 0;
     let g = prices.length;
-    const l = [];
-    const r = [];
+    const l = new Array(g);
+    const r = new Array(g);
     for (let i = 0; i < g; i += 1) {
         let v = prices[i];
         l[i] = Math.min(l[i - 1], v) || v;
