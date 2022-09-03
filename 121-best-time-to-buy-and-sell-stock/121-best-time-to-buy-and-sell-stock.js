@@ -9,7 +9,7 @@ var maxProfit = function(prices) {
     const r = new Array(g);
     for (let i = 0; i < g; i += 1) {
         let v = prices[i];
-        l[i] = Math.min(l[i - 1], v) || v;
+        l[i] = l[i - 1] < v ? l[i - 1] : v;
     }
     for (let i = g - 1; i >= 0; i -= 1) {
         let v = prices[i];
