@@ -4,10 +4,19 @@
  */
 var maxProfit = function(prices) {
     let max = 0;
-    let left = Infinity;
+    const left = new Array(prices.length);
+    const right = new Array(prices.length);
     for (let i = 0; i < prices.length; i += 1) {
-        left = Math.min(left, prices[i]);
-        max = Math.max(max, (prices[i] - left));
+        left[i] = Math.min(left[i - 1], prices[i]) || prices[i];
     }
+    for (let i = prices.length - 1; i >= 0; i -= 1) {
+        right[i] = Math.max(right[i + 1], prices[i]) || prices[i];
+    }
+    for (let i = 0; i < prices.length; i += 1) {
+        max = Math.max(max, right[i] - left[i]);
+    }
+    console.log(prices)
+    console.log(left)
+    console.log(right)
     return max;
 };
