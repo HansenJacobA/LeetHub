@@ -4,7 +4,7 @@
  */
 var maxProfit = function(prices) {
     let m = 0;
-    let l = Infinity;
+    let l = prices[0];
     for (const n of prices) {
         l = l < n ? l : n;
         m = m > n - l ? m : n - l;
