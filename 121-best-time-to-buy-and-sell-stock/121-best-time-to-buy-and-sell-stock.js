@@ -15,8 +15,5 @@ var maxProfit = function(prices) {
     for (let i = 0; i < prices.length; i += 1) {
         max = Math.max(max, right[i] - left[i]);
     }
-    console.log(prices)
-    console.log(left)
-    console.log(right)
     return max;
 };
