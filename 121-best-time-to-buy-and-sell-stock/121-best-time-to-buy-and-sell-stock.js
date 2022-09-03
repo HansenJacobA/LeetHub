@@ -2,33 +2,17 @@
  * @param {number[]} prices
  * @return {number}
  */
-// var maxProfit = function(p) {
-//     let m = 0;
-//     let l = p[0];
-//     for (const n of p) {
-//         l = l < n ? l : n;
-//         m = m > n - l ? m : n - l;
-//     }
-//     return m;
-// };
-
 var maxProfit = function(prices) {
-    
-    // Iteratively go through each price. If we
-    // find a lower price than the current lower replace it.
-    // else calculate the profit for the current price with the lower price
-    // yet found and substitute teh maxProfit if it's higher.
-    
-    let lowestPrice = 0;
     let maxProfit = 0;
-    
-    for (let i = 1; i < prices.length; i++) {
-        if (prices[i] < prices[lowestPrice]) {
-            lowestPrice = i;
-        } else {
-            maxProfit = Math.max(maxProfit, prices[i] - prices[lowestPrice]);
-        }
+    let minPrice = prices[0];
+
+    for(let sell = 1; sell<prices.length;sell++){
+        let sellPrice = prices[sell];
+        let profit = sellPrice - minPrice;
+
+        maxProfit = Math.max(maxProfit, profit);
+
+        if(sellPrice < minPrice) minPrice = sellPrice;
     }
-    
-    return maxProfit
+    return maxProfit;
 };
