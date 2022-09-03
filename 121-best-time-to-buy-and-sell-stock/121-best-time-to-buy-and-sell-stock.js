@@ -16,7 +16,7 @@ var maxProfit = function(prices) {
         r[i] = Math.max(r[i + 1], v) || v;
     }
     for (let i = 0; i < g; i += 1) {
-        m = Math.max(m, r[i] - l[i]);
+        m = m > r[i] - l[i] ? m : r[i] - l[i];
     }
     return m;
 };
