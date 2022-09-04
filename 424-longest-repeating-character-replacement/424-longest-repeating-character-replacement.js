@@ -9,14 +9,10 @@ var characterReplacement = function(s, k) {
     let l = 0;
     let max = 0;
     for (let r = 0; r < s.length; r += 1) {
-        if (cache[s[r]] == undefined) {
-            cache[s[r]] = 1;
-        } else {
-            cache[s[r]] += 1;
-        }
+        cache[s[r]] = cache[s[r]] == undefined ? 1 : cache[s[r]] += 1;
         max = max > cache[s[r]] ? max : cache[s[r]];
         if (r - l - max < k) {
-            result = Math.max(result, r - l + 1);
+            result = result > r - l + 1 ? result : r - l + 1;
         } else {
             while (r - l - max >= k) {
                 cache[s[l]] -= 1;
