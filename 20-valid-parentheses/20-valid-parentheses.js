@@ -3,15 +3,20 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    const key = {
-        ')': '(',
-        '}': '{',
-        ']': '['
+    const pairs = {
+        '(': ')',
+        '[': ']',
+        '{': '}'
     }
     const stack = [s[0]];
-    for (let i = 1; i < s.length; i += 1) {
-        if (key[s[i]] && stack.pop() !== key[s[i]]) return false;
-        if (!key[s[i]]) stack.push(s[i]);
+    let i = 1;
+    while (i < s.length) {
+        if (pairs[s[i]]) {
+            stack.push(s[i]);
+        } else if (pairs[stack.pop()] !== s[i]) {
+            return false;
+        }
+        i += 1;
     }
-    return !stack.length;
+    return stack.length == 0;
 };
