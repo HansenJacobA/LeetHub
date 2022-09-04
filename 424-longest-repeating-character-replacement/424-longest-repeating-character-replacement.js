@@ -25,13 +25,6 @@ var characterReplacement = function(s, k) {
         } else {
             while (r - l - max >= k) {
                 cache[s[l]] -= 1;
-                max = (() => {
-                    let m = 0;
-                    for (const k in cache) {
-                        m = Math.max(m, cache[k]);
-                    }
-                    return m;
-                })();
                 l += 1;
             }
         }
