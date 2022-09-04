@@ -7,19 +7,14 @@ var characterReplacement = function(s, k) {
     let result = 0;
     const cache = {};
     let l = 0;
+    let max = 0;
     for (let r = 0; r < s.length; r += 1) {
         if (cache[s[r]] == undefined) {
             cache[s[r]] = 1;
         } else {
             cache[s[r]] += 1;
         }
-        let max = (() => {
-            let m = 0;
-            for (const k in cache) {
-                m = Math.max(m, cache[k]);
-            }
-            return m;
-        })();
+        max = max > cache[s[r]] ? max : cache[s[r]];
         if (r - l - max < k) {
             result = Math.max(result, r - l + 1);
         } else {
