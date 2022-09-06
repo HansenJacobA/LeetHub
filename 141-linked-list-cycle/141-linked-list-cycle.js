@@ -11,12 +11,13 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let node = head;
-    while (node && head) {
-        if (node.next === null) return false;
-        node = node.next.next;
-        if (node === head) return true;
-        head = head.next
+    if (!head || !head.next) return false;
+    let single = head;
+    let double = head && head.next ? head.next : null;
+    while (single && double) {
+        if (single == double) break;
+        single = single.next;
+        double = double.next ? double.next.next : null;
     }
-    return false;
+    return single == double;
 };
