@@ -11,7 +11,7 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    if (!head || !head.next) return false;
+    if (!head) return false;
     let single = head;
     let double = head && head.next ? head.next : null;
     while (single && double) {
