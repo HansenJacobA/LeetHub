@@ -26,8 +26,6 @@ var reorderList = function(head) {
         next = curr ? curr.next : null;
     }
     let node = head;
-    console.log(prev)
-    console.log(node)
     while (prev && node) {
         let temp = node.next;
         node.next = prev;
