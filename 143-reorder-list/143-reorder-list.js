@@ -1,6 +1,6 @@
 var reorderList = function(head) {
     let left = head;
-    let right = head;
+    let right = head ? head.next : head;
     while (right) {
         left = left.next;
         right = right.next ? right.next.next : null;
